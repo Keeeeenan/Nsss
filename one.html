@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Number One</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        </style>
+    </head>
+    <body>
+        <div></div>
+    <script type="text/javascript">
+        var url = 'https://jsonplaceholder.typicode.com/posts/',
+            url2 = 'http://[yourserver]/download/request?host=2',
+            response,
+            request = new XMLHttpRequest(),
+            fragment = document.createDocumentFragment();
+
+        request.open('GET', url, true);
+        request.onload = function(e){
+            if(request.status === 200){
+                response = JSON.parse(request.responseText);
+                for(var i=0;i<10;i++){
+                    for(key in response[i]){
+                        var el = document.createElement('p');
+                        var span = document.createElement('span');
+                        var bold = document.createElement('strong');
+                        bold.append(document.createTextNode(key));
+                        span.appendChild(bold);
+                        el.append(span,': ',document.createTextNode(response[i][key]), document.createElement('br'));
+                        fragment.appendChild(el)
+                    }
+                }
+                document.getElementsByTagName('DIV')[0].appendChild(fragment);
+            }
+        }
+        request.onerror = function(){};
+        request.send();
+    </script>
+    </body>
+</html>

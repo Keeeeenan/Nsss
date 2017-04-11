@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Number Two</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <style>
+            div{
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            input{
+                -webkit-appearance:none;
+                width: 75%;
+                margin: auto;
+                text-align: center;
+                border-radius: 0;
+                line-height: 60px;
+                border-radius: 2px;
+                font: italic 15px serif;
+                display: block;
+                height: 50px;
+            }
+
+            table{
+                width: 85%;
+                border-collapse: collapse;
+                border: 1px solid gainsboro;
+                box-shadow: 0 0 15px -2px #bbb;
+                margin: 10px auto;
+                border-bottom: 2px solid #00a5b5;
+                border-spacing: 1px;
+                table-layout: fixed;
+            }
+
+            thead tr{
+                padding: 1%;
+                background-color: #00a5b5;
+                color: white;
+            }
+
+            /*tr:nth-child(2n){ background-color:#ddd;}*/
+            
+            th{
+                padding: 2%;
+                text-transform: uppercase;
+                font-weight: 900;
+                font-size: 12px;
+            }
+
+
+
+            td:nth-child(1), th:nth-child(1), td:nth-child(2), th:nth-child(2){
+                text-align: center;
+            } 
+
+            tbody{
+                overflow: auto;
+                height: 800px;
+            }
+
+            tbody td{
+                padding: 3px;
+            }
+
+
+            .hovered{ 
+                background-color: #f3f3f3;
+                box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+                transform: scale(1.02);
+                transition: all 0.05s ease-in-out;
+                border: none;
+                }
+            .blurred{ filter: blur(1px)}
+
+    </style>
+    </head>
+    <body> 
+        <div>
+            <input type="search" name="" value="" placeholder="Search rows...">
+
+        </div>
+    <script type="text/javascript">
+
+        var url = 'https://jsonplaceholder.typicode.com/posts/';
+        var url2 = 'http://[yourserver]/download/request?host=2';
+        var response;
+        var request = new XMLHttpRequest();
+        var fragment = document.createDocumentFragment();
+        request.open('GET', url, true);
+        request.onerror = function(error){
+            console.log('Error! Error! Read all about it!'+error);
+        }
+        request.onload = function(e){
+            if(request.status === 200){
+                var table = document.createElement('table');         
+                response = JSON.parse(request.responseText);
+                table.appendChild(getHeaders(response));
+                table.appendChild(fillTable(response));
+                /*
+                for(var i=0;i<response.length;i++){
+                    for(key in response[i]){
+                        var el = document.createElement('p');
+                        var span = document.createElement('span');
+                        var bold = document.createElement('strong');
+
+                        bold.append(document.createTextNode(key));
+                        span.appendChild(bold);
+                        el.append(span,': ',document.createTextNode(response[i][key]), document.createElement('br'));
+                        fragment.appendChild(el)
+                    }
+                }*/
+                fragment.appendChild(table);
+                document.getElementsByTagName('div')[0].appendChild(fragment);
+                //$("div > table").attr('style',"background-color:blue;");
+                
+
+            }
+        }
+        request.send();
+
+        function getHeaders(response){
+            var tableheader = document.createElement('thead');
+            var row = document.createElement('tr');
+            var header = document.createElement('th');
+
+            for(key in response[0]){
+               var rowTitle = header.cloneNode(false);
+               rowTitle.append(document.createTextNode(key));
+               row.appendChild(rowTitle);
+            }
+            tableheader.appendChild(row);
+            return tableheader;
+        }
+
+        function fillTable(response){
+            var tbody = document.createElement('tbody');
+            var row = document.createElement('tr');
+            for(var i=0;i<20;i++){
+                var newrow = row.cloneNode(false);             
+                for(key in response[i]){
+                var field = document.createElement('td');
+                field.appendChild(document.createTextNode(response[i][key]));
+                newrow.appendChild(field);
+                }
+                tbody.appendChild(newrow);
+            }    
+            return tbody;
+        }
+    </script>
+        <script>
+        $(document).ready(function(){
+
+            $('body').on('click', 'tr', function(){
+               //$(this).css('background-color','blue');
+            });
+
+            //Filter/Search through rows
+            $('body').on('keyup keydown','input', function(){
+                var rows = $(' tbody > tr');
+                var re = new RegExp($(this).val(), 'i');
+                $.each(rows, function(i, val){
+                    if((rows[i].innerHTML).search(re) != -1){
+                        $(this).fadeIn(150);
+                    }
+                    else{
+                       $(this).fadeOut(150);
+                    }
+                })
+                console.log($('tbody > tr:not(:hidden)').length);
+            });
+
+            //Add a hover effect for rows
+            $('body').on('mouseenter mouseleave', ' tbody > tr', function(){
+                $(this).toggleClass('hovered');
+            });
+
+            //Add a hover effect for columns
+            $('body').on('mouseenter mouseleave', 'th', function(){
+                var i = $('th').index(this);
+                console.log(i);
+                $('tr td:nth-child('+(i+1)+')').toggleClass('hovered');
+            });
+
+            //Scroll event to put header rows and search on top of screen
+
+
+        });
+        </script>
+    </body>
+</html>
