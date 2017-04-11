@@ -1,0 +1,70 @@
+div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+input{
+    -webkit-appearance:none;
+    width: 75%;
+    margin: auto;
+    text-align: center;
+    border-radius: 0;
+    line-height: 60px;
+    border-radius: 2px;
+    font: italic 15px serif;
+    display: block;
+    height: 50px;
+}
+
+table{
+    width: 85%;
+    border-collapse: collapse;
+    border: 1px solid gainsboro;
+    box-shadow: 0 0 15px -2px #bbb;
+    margin: 10px auto;
+    border-bottom: 2px solid #00a5b5;
+    border-spacing: 1px;
+    table-layout: fixed;
+}
+
+thead tr{
+    padding: 1%;
+    background-color: #00a5b5;
+    color: white;
+}
+
+/*tr:nth-child(2n){ background-color:#ddd;}*/
+
+th{
+    padding: 2%;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 12px;
+}
+
+
+
+td:nth-child(1), th:nth-child(1), td:nth-child(2), th:nth-child(2){
+    text-align: center;
+} 
+
+tbody{
+    overflow: auto;
+    height: 800px;
+}
+
+tbody td{
+    padding: 3px;
+}
+
+
+.hovered{ 
+    background-color: #f3f3f3;
+    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    transform: scale(1.02);
+    transition: all 0.05s ease-in-out;
+    border: none;
+    }
+    
+.blurred{ filter: blur(1px)}
