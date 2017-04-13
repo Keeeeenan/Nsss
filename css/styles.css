@@ -94,7 +94,7 @@ button{
 .popUpBg{
     width: 100%;
     background-color: rgba(190, 190, 190, 0.3);
-    height: 100%;
+    min-height: 100%;
     position: absolute;
     z-index: 9;
 }

@@ -36,32 +36,35 @@ $(document).ready(function(){
             var i = $('th').index(this);
             $('tr td:nth-child('+(i+1)+')').toggleClass('hovered-col');
         });
+        if (window.matchMedia("(min-width: 640px)").matches) {
+                //Create a popup
+                $('body').on('click', 'tbody tr', function(){
+                    $('input, table').addClass('blur');
+                        var popUpBg = $('<div>')
+                            .addClass('popUpBg');
+                        var list = $('<ul>')
+                            .addClass('popup');
+                        
+                        $(this).children().each(function(i){
+                            var text = '<h4>' + $('th').eq(i).html().toUpperCase() + '</h4>' + $(this).html();
+                            li = $('<li>')
+                            .html(text)
+                            .appendTo(list);
+                        })
 
-        //Create a popup
-        $('body').on('click', 'tbody tr', function(){
-           $('input, table').addClass('blur');
-            var popUpBg = $('<div>')
-                .addClass('popUpBg');
-            var list = $('<ul>')
-                .addClass('popup');
-            
-            $(this).children().each(function(i){
-                var text = '<h4>' + $('th').eq(i).html().toUpperCase() + '</h4>' + $(this).html();
-                li = $('<li>')
-                .html(text)
-                .appendTo(list);
-            })
+                        list.appendTo(popUpBg);
+                        popUpBg.appendTo('.main');
+                        $('body').css('overflow','hidden');
+                    });
+        }
 
-            list.appendTo(popUpBg);
-            popUpBg.appendTo('.main');
-            $(body).css('overflow','hidden');
-        });
 
         //Popup removal
         $('body').on('click', '.popUpBg', function(){
             $('.popup').remove();
             $(this).remove();
             $('input, table').toggleClass('blur');
+            $('body').css('overflow','auto');
         });
 
         //Scroll to top button
