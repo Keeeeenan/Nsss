@@ -7,18 +7,21 @@
         <link href="css/styles.css" rel="stylesheet">
     </head>
     <body>
+
         <div class="main">
             <input type="search" name="" value="" placeholder="Search rows...">
             <div id="table-container"></div>
             <!--<button id="top">^</button>-->
         </div>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
-    <script type="text/javascript" src="requesth.js"></script>
-    <script type="text/javascript" src="jquerystyle.js"></script>    
-    <script id="tableTemplate" type="text/x-handlebars-template">
-        <table id="configurations">
+
+        <!--Scripts-->
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+        <script type="text/javascript" src="requesth.js"></script>
+        <script type="text/javascript" src="js/jquerystyle.js"></script>    
+        <script id="tableTemplate" type="text/x-handlebars-template">
+         <table id="configurations">
             <thead>
                 <tr>
                     <th class="sort" data-sort="port">Port</th>
@@ -38,8 +41,6 @@
             {{/each}}
             </tbody>
         </table>         
-    </script>
-    <script>
-    </script>
+        </script>
     </body>
 </html>
