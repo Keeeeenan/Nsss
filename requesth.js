@@ -29,11 +29,6 @@
         
                 var configurationList = new List('table-container', options);
 
-                //List JS search
-                $('input').on('keyup', function() {
-                var searchString = $(this).val();
-                configurationList.search(searchString);
-                });
             }
         }
 
