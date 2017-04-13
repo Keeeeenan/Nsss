@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/styles.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="main">
+            <input type="search" name="" value="" placeholder="Search rows...">
+            <div id="table-container"></div>
+            <!--<button id="top">^</button>-->
+        </div>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+    <script type="text/javascript" src="requesth.js"></script>
+    <script type="text/javascript" src="jquerystyle.js"></script>    
+    <script id="tableTemplate" type="text/x-handlebars-template">
+        <table id="configurations">
+            <thead>
+                <tr>
+                    <th class="sort" data-sort="port">Port</th>
+                    <th class="sort" data-sort="username">Username</th>
+                    <th class="sort" data-sort="name">Name</th>
+                    <th class="sort" data-sort="hostname">HostName</th>
+                </tr>
+            </thead> 
+            <tbody class="list">
+            {{#each configurations}}
+                <tr>
+                    <td class="port">{{port}}</td>
+                    <td class="sername">{{username}}</td>
+                    <td class="name">{{name}}</td>
+                    <td class="hostname">{{hostname}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>         
+    </script>
+    <script>
+    </script>
+    </body>
+</html>

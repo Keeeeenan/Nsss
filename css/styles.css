@@ -1,70 +1,201 @@
-div{
+*{
+    box-sizing: border-box;
+}
+
+.main{
     display: flex;
     flex-direction: column;
+}
+
+#table-container{
     width: 100%;
 }
 
 input{
     -webkit-appearance:none;
-    width: 75%;
+    width: 95%;
     margin: auto;
-    text-align: center;
-    border-radius: 0;
     line-height: 60px;
-    border-radius: 2px;
     font: italic 15px serif;
     display: block;
     height: 50px;
+    padding-left: 20px;
+    border: none;
+    border-bottom: 1px solid #00a5b5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+input:focus{
+    outline: none;
+}
+
+/** ********* **\
+      Table
+\** ********* **/
+body{
+    padding-top:10%;
+}
+
+thead{
+    display:none;
 }
 
 table{
+    width: 100%;
+}
+
+tbody tr{
+    display: block;
+    box-shadow: 0 1px 1px #00a5b5;
+    width: 95%;
+    margin: 10px auto;
+    padding: 2%;
+}
+
+tbody tr{
+    background-color: whitesmoke;
+}
+
+td{
+    display: block;
+}
+.hovered-row{ 
+    background-color: #f3f3f3;
+    box-shadow:0 1px 10px rgba(0, 0, 0, 0.3), 0 0 70px rgba(0, 0, 0, 0.1) inset;
+    transform: scale(1.01);
+    transition: all 0.05s ease-in-out;
+    border: white;
+    text-align:center;  
+    }
+
+.blur{ filter: blur(5px)}
+
+button{
+    display: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius:50%;
+    position: absolute;
+    bottom: 10%;
+    right: 10%;
+    z-index:5;
+    background-color: #00a5b5;
+}
+
+/** ********* **\
+      PopUp
+\** ********* **/
+
+.popUpBg{
+    width: 100%;
+    background-color: rgba(190, 190, 190, 0.3);
+    height: 100%;
+    position: absolute;
+    z-index: 9;
+}
+
+.popup{
+    width: 80%;
+    box-shadow: 1px 1px 5px grey;
+    padding: 4%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background-color: #00a5b5;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.popup li{
+    list-style-type: none;
+    margin: 1% 0;
+}
+
+
+
+
+
+@media screen and (min-width:640px){
+    body{
+        padding: 0;
+    }
+
+    input{
+        position: static;
+        width: 75%;
+    }
+
+    table tbody {
+        max-height: 500px;
+        overflow-y: auto;
+    }
+
+    table {
     width: 85%;
     border-collapse: collapse;
     border: 1px solid gainsboro;
+    border-bottom: 2px solid #00a5b5;
     box-shadow: 0 0 15px -2px #bbb;
     margin: 10px auto;
-    border-bottom: 2px solid #00a5b5;
-    border-spacing: 1px;
-    table-layout: fixed;
-}
-
-thead tr{
-    padding: 1%;
-    background-color: #00a5b5;
-    color: white;
-}
-
-/*tr:nth-child(2n){ background-color:#ddd;}*/
-
-th{
-    padding: 2%;
-    text-transform: uppercase;
-    font-weight: 900;
-    font-size: 12px;
-}
-
-
-
-td:nth-child(1), th:nth-child(1), td:nth-child(2), th:nth-child(2){
-    text-align: center;
-} 
-
-tbody{
-    overflow: auto;
-    height: 800px;
-}
-
-tbody td{
-    padding: 3px;
-}
-
-
-.hovered{ 
-    background-color: #f3f3f3;
-    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    transform: scale(1.02);
-    transition: all 0.05s ease-in-out;
-    border: none;
+    background-color: white;
     }
-    
-.blurred{ filter: blur(1px)}
+
+    table tbody,
+    table thead { display: block; }
+
+    tbody tr{ 
+        display: inherit;
+        box-shadow: 0 15px 1px -15px #00a5b5;
+        width: inherit;
+        margin: initial;
+        padding: inherit;
+        width: 100%;
+        text-align:left;
+        background-color: initial;
+        }
+
+    thead tr{
+        background-color: #00a5b5;
+        color: white;
+
+    }
+
+    th{
+        padding: 2%;
+        text-transform: uppercase;
+        font-weight: 900;
+        font-size: 12px;
+        width: 5%;
+    }
+
+    tbody{ max-height: 500px; }
+
+    td{
+        padding: 2%;
+        text-align: center;
+        width: 5.75%;
+        display: table-cell;
+    }
+
+    .popup{
+        width: 300px;
+    }
+
+    .hovered-col{
+        background-color: #f3f3f3;
+        box-shadow:0 1px 10px rgba(0, 0, 0, 0.3);
+    }
+
+}
+
+
+
+
+
