@@ -38,7 +38,7 @@ $(document).ready(function(){
         });
 
         //Create a popup
-        $('body').on('click', 'tr', function(){
+        $('body').on('click', 'tbody tr', function(){
            $('input, table').addClass('blur');
             var popUpBg = $('<div>')
                 .addClass('popUpBg');
@@ -54,6 +54,7 @@ $(document).ready(function(){
 
             list.appendTo(popUpBg);
             popUpBg.appendTo('.main');
+            $(window).css('overflow','hidden');
         });
 
         //Popup removal
