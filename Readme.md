@@ -19,7 +19,7 @@ Added media queries and tried my best to make a decent looking table
 **See index.html** 
 Fairly light implementations. For something so simple, i felt there was minimal need for heavy frameworks.  
 I noticed the job description mentioned *Handlebars* so i used that to create the table  
-I also used *List JS* so that columns could be sortable and to make use of all other goodies you'd want from a table
+I also used *List JS* so that columns could be sortable (click on headers) and to make use of all other goodies you'd want from a table
 Trusty jQuery still being used
 Created a extremely basic barebones server to serve the JSON. Random values.
 
