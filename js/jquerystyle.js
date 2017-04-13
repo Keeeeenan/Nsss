@@ -54,7 +54,7 @@ $(document).ready(function(){
 
             list.appendTo(popUpBg);
             popUpBg.appendTo('.main');
-            $(window).css('overflow','hidden');
+            $(body).css('overflow','hidden');
         });
 
         //Popup removal
