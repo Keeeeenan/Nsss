@@ -47,29 +47,27 @@ $(document).ready(function(){
             $('body').off('click','tbody tr');
         }
             else{
-            console.log('true')
-            $('body').on('click', 'tbody tr', function(){
-                $('input, table').addClass('blur');
-                var popUpBg = $('<div>')
-                .addClass('popUpBg');
-                var list = $('<ul>')
-                .addClass('popup');
+                console.log('true')
+                $('body').on('click', 'tbody tr', function(){
+                    $('input, table').addClass('blur');
+                    var popUpBg = $('<div>')
+                    .addClass('popUpBg');
+                    var list = $('<ul>')
+                    .addClass('popup');
 
-                $(this).children().each(function(i){
-                    var text = '<h4>' + $('th').eq(i).html().toUpperCase() + '</h4>' + $(this).html();
-                    li = $('<li>')
-                    .html(text)
-                    .appendTo(list);
+                    $(this).children().each(function(i){
+                        var text = '<h4>' + $('th').eq(i).html().toUpperCase() + '</h4>' + $(this).html();
+                        li = $('<li>')
+                        .html(text)
+                        .appendTo(list);
+                    })
+
+                    list.appendTo(popUpBg);
+                    popUpBg.appendTo('.main');
+                    $('body').css('overflow','hidden');
                 })
-
-                list.appendTo(popUpBg);
-                popUpBg.appendTo('.main');
-                $('body').css('overflow','hidden');
-            })
+            }
         }
-
-        }
-
 
         //Popup removal
         $('body').on('click', '.popUpBg', function(){
@@ -79,9 +77,10 @@ $(document).ready(function(){
             $('body').css('overflow','auto');
         });
 
-        //Scroll to top button
-        $('button').click(function(){
-            $('tbody').animate({scrollTop: 0}, 800);
-        });
-
+        /* Not yet implemented
+                //Scroll to top button
+                $('button').click(function(){
+                    $('tbody').animate({scrollTop: 0}, 800);
+                });
+        */
     });

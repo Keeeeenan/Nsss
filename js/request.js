@@ -45,6 +45,8 @@
                 
             for(key in response[0]){
                var rowTitle = header.cloneNode(false);
+               rowTitle.id = key;
+               rowTitle.className = 'header';
                rowTitle.appendChild(document.createTextNode(key));
                row.appendChild(rowTitle);
             }
