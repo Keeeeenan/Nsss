@@ -1,4 +1,5 @@
-
+ document.addEventListener('DOMContentLoaded', function(){
+            
         var url = 'https://nessconfigs.herokuapp.com/download/request?host=20';
         var url2 = 'http://[yourserver]/download/request?host=2';
         var url3 = 'http://localhost:3000/download/request?host=2';
@@ -7,7 +8,7 @@
         var fragment = document.createDocumentFragment();
 
 
-        request.open('GET', url, true);
+        request.open('GET', url3, true);
         request.onerror = function(error){
             console.log('Error! Error!');
         }
@@ -31,5 +32,5 @@
 
             }
         }
-
         request.send();
+ })

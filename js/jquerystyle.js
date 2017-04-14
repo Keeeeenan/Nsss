@@ -36,26 +36,38 @@ $(document).ready(function(){
             var i = $('th').index(this);
             $('tr td:nth-child('+(i+1)+')').toggleClass('hovered-col');
         });
-        if (window.matchMedia("(min-width: 640px)").matches) {
-                //Create a popup
-                $('body').on('click', 'tbody tr', function(){
-                    $('input, table').addClass('blur');
-                        var popUpBg = $('<div>')
-                            .addClass('popUpBg');
-                        var list = $('<ul>')
-                            .addClass('popup');
-                        
-                        $(this).children().each(function(i){
-                            var text = '<h4>' + $('th').eq(i).html().toUpperCase() + '</h4>' + $(this).html();
-                            li = $('<li>')
-                            .html(text)
-                            .appendTo(list);
-                        })
 
-                        list.appendTo(popUpBg);
-                        popUpBg.appendTo('.main');
-                        $('body').css('overflow','hidden');
-                    });
+        var large = window.matchMedia('(max-width:640px)');
+        large.addListener(createPopups);
+        createPopups(large);
+
+        function createPopups(){
+        if(large.matches){
+            console.log('flase');
+            $('body').off('click','tbody tr');
+        }
+            else{
+            console.log('true')
+            $('body').on('click', 'tbody tr', function(){
+                $('input, table').addClass('blur');
+                var popUpBg = $('<div>')
+                .addClass('popUpBg');
+                var list = $('<ul>')
+                .addClass('popup');
+
+                $(this).children().each(function(i){
+                    var text = '<h4>' + $('th').eq(i).html().toUpperCase() + '</h4>' + $(this).html();
+                    li = $('<li>')
+                    .html(text)
+                    .appendTo(list);
+                })
+
+                list.appendTo(popUpBg);
+                popUpBg.appendTo('.main');
+                $('body').css('overflow','hidden');
+            })
+        }
+
         }
 
 

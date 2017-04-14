@@ -7,10 +7,6 @@
     flex-direction: column;
 }
 
-#table-container{
-    width: 100%;
-}
-
 input{
     -webkit-appearance:none;
     width: 95%;
@@ -53,15 +49,14 @@ tbody tr{
     width: 95%;
     margin: 10px auto;
     padding: 2%;
-}
-
-tbody tr{
     background-color: whitesmoke;
 }
 
 td{
     display: block;
 }
+
+
 .hovered-row{ 
     background-color: #f3f3f3;
     box-shadow:0 1px 10px rgba(0, 0, 0, 0.3), 0 0 70px rgba(0, 0, 0, 0.1) inset;
@@ -120,8 +115,6 @@ button{
 
 
 
-
-
 @media screen and (min-width:640px){
     body{
         padding: 0;
@@ -174,8 +167,6 @@ button{
         font-size: 12px;
         width: 5%;
     }
-
-    tbody{ max-height: 500px; }
 
     td{
         padding: 2%;
