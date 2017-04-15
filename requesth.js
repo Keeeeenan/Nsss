@@ -8,7 +8,7 @@
         var fragment = document.createDocumentFragment();
 
 
-        request.open('GET', url3, true);
+        request.open('GET', url, true);
         request.onerror = function(error){
             console.log('Error! Error!');
         }
