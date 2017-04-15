@@ -1,8 +1,8 @@
  document.addEventListener('DOMContentLoaded', function(){
             
-        var url = 'https://nessconfigs.herokuapp.com/download/request?host=20';
+        var url = 'https://nessconfigs.herokuapp.com/download/request?hosts=200';
         var url2 = 'http://[yourserver]/download/request?host=2';
-        var url3 = 'http://localhost:3000/download/request?host=2';
+        var url3 = 'http://localhost:3000/download/request?hosts=200';
         var response;
         var request = new XMLHttpRequest();
         var fragment = document.createDocumentFragment();

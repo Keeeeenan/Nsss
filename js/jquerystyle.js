@@ -1,7 +1,8 @@
 $(document).ready(function(){
-
-        /* Add style dynamically by appending to head  
-
+    
+        /* 
+        
+        *** Add style dynamically by appending to head ***
 
         var styles = "table{width:75%; height:800px;}\
         thead{background-color:teal; color:white}"
@@ -10,6 +11,8 @@ $(document).ready(function(){
 
         */
 
+
+        $(document).on('scroll', checkScrollPosition);
         //Filter/Search through rows
         $('body').on('keyup keydown','input', function(){
             var rows = $(' tbody > tr'),
@@ -42,45 +45,58 @@ $(document).ready(function(){
         createPopups(large);
 
         function createPopups(){
-        if(large.matches){
-            console.log('flase');
-            $('body').off('click','tbody tr');
-        }
-            else{
-                console.log('true')
-                $('body').on('click', 'tbody tr', function(){
-                    $('input, table').addClass('blur');
-                    var popUpBg = $('<div>')
-                    .addClass('popUpBg');
-                    var list = $('<ul>')
-                    .addClass('popup');
+            $('body').on('click', 'tbody tr', function(){
+                $('input, table').addClass('blur');
+                var popUpBg = $('<div>')
+                .addClass('popUpBg');
+                var list = $('<ul>')
+                .addClass('popup');
 
-                    $(this).children().each(function(i){
-                        var text = '<h4>' + $('th').eq(i).html().toUpperCase() + '</h4>' + $(this).html();
-                        li = $('<li>')
-                        .html(text)
-                        .appendTo(list);
-                    })
-
-                    list.appendTo(popUpBg);
-                    popUpBg.appendTo('.main');
-                    $('body').css('overflow','hidden');
+                $(this).children().each(function(i){
+                    var text = '<h4>' + $('th').eq(i).html().toUpperCase() + '</h4>' + $(this).html();
+                    li = $('<li>')
+                    .html(text)
+                    .appendTo(list);
                 })
-            }
+
+                list.appendTo(popUpBg);
+                popUpBg.appendTo('.main');
+                $('body').css('overflow','hidden');
+            })
         }
 
         //Popup removal
-        $('body').on('click', '.popUpBg', function(){
-            $('.popup').remove();
-            $(this).remove();
-            $('input, table').toggleClass('blur');
+        $('body').on('click', '.popUpBg, .popup', function(){
+            $('.popup, .popUpBg').remove();
+            $('input, table').removeClass('blur');
             $('body').css('overflow','auto');
         });
 
-        /* Not yet implemented
-                //Scroll to top button
-                $('button').click(function(){
-                    $('tbody').animate({scrollTop: 0}, 800);
-                });
-        */
+        $('body').on('scroll', checkScrollPosition);
+        $('body').on('mouseenter', 'table', addScrollHandler);
+
+        function addScrollHandler(){
+            $('html, body, tbody, #table-container, table, tr, .main').on('scroll', checkScrollPosition);
+            $('body').off('mouseenter', 'table', addScrollHandler);
+        };
+
+        function checkScrollPosition(){
+            if( $(this).scrollTop() >= 500){
+                $('button').show();
+            }
+            else{
+                $('button').hide();
+            }
+        }
+
+        $('button').click(function(e){
+            e.preventDefault();
+            if(large.matches){
+                $('html,body').animate({scrollTop: 0}, 800);
+            }
+            else{          
+                $('tbody').animate({scrollTop: 0}, 800);
+            }
+        });
+        
     });
