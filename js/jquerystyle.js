@@ -13,6 +13,8 @@ $(document).ready(function(){
 
 
         $(document).on('scroll', checkScrollPosition);
+
+        
         //Filter/Search through rows
         $('body').on('keyup keydown','input', function(){
             var rows = $(' tbody > tr'),
