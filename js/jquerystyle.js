@@ -10,17 +10,47 @@ $(document).ready(function(){
         $('head').append('<style type="text/css">'+styles+'</style>');
 
         */
-
+        $('body').on('mouseenter', 'table', addScrollHandler);
 
         $(document).on('scroll', checkScrollPosition);
 
-        
-        //Filter/Search through rows
-        $('body').on('keyup keydown','input', function(){
+        $('input').on('keyup keydown', searchForString);
+
+        $('body').on('mouseenter mouseleave', ' tbody > tr', function(){
+            $(this).toggleClass('hovered-row');
+        });
+
+        $('body').on('mouseenter mouseleave', 'th', function(){
+            var i = $('th').index(this);
+            $('tr td:nth-child('+(i+1)+')').toggleClass('hovered-col');
+        });
+
+        $('body').on('click', '.popUpBg, .popup', removePopUp);
+
+        $('#top').click(function(e){
+            e.preventDefault();
+            $('html,body,tbody').animate({scrollTop: 0}, 800);  
+        });
+
+        function addScrollHandler(){
+            $('tbody').on('scroll', checkScrollPosition);
+            $('body').off('mouseenter', 'table', addScrollHandler);
+        };
+
+        function checkScrollPosition(){
+            if( $(this).scrollTop() >= 500){
+                $('button').show();
+            }
+            else{
+                $('button').hide();
+            }
+        }
+
+        function searchForString(){
             var rows = $(' tbody > tr'),
                 search = $(this).val().replace(/[^a-zA-Z0-9 ]/g, "_"),
                 re = new RegExp(search, 'i');
-            console.log(search);
+
             $.each(rows, function(i, val){
                 if(($(this).children().text()).search(re) != -1){
                     $(this).fadeIn(150);
@@ -29,24 +59,9 @@ $(document).ready(function(){
                     $(this).fadeOut(150);
                 }
             })
-        });
+        }
 
-        //Add a hover effect for rows
-        $('body').on('mouseenter mouseleave', ' tbody > tr', function(){
-            $(this).toggleClass('hovered-row');
-        });
-
-        //Add a hover effect for columns
-        $('body').on('mouseenter mouseleave', 'th', function(){
-            var i = $('th').index(this);
-            $('tr td:nth-child('+(i+1)+')').toggleClass('hovered-col');
-        });
-
-        var large = window.matchMedia('(max-width:640px)');
-        large.addListener(createPopups);
-        createPopups(large);
-
-        function createPopups(){
+        (function createPopups(){
             $('body').on('click', 'tbody tr', function(){
                 $('input, table').addClass('blur');
                 var popUpBg = $('<div>')
@@ -65,40 +80,12 @@ $(document).ready(function(){
                 popUpBg.appendTo('.main');
                 $('body').css('overflow','hidden');
             })
-        }
+        }())
 
-        //Popup removal
-        $('body').on('click', '.popUpBg, .popup', function(){
+        function removePopUp(){
             $('.popup, .popUpBg').remove();
             $('input, table').removeClass('blur');
             $('body').css('overflow','auto');
-        });
-
-        $('body').on('scroll', checkScrollPosition);
-        $('body').on('mouseenter', 'table', addScrollHandler);
-
-        function addScrollHandler(){
-            $('html, body, tbody, #table-container, table, tr, .main').on('scroll', checkScrollPosition);
-            $('body').off('mouseenter', 'table', addScrollHandler);
-        };
-
-        function checkScrollPosition(){
-            if( $(this).scrollTop() >= 500){
-                $('button').show();
-            }
-            else{
-                $('button').hide();
-            }
         }
 
-        $('button').click(function(e){
-            e.preventDefault();
-            if(large.matches){
-                $('html,body').animate({scrollTop: 0}, 800);
-            }
-            else{          
-                $('tbody').animate({scrollTop: 0}, 800);
-            }
-        });
-        
     });
