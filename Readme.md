@@ -1,3 +1,6 @@
+## https://keeeeenan.github.io/Nsss/
+(Server hosted on herokuapps so initial visit might take a few seconds to 'wake up')
+
 ## 1.
 **See js/request.js**  
 I see tabular data when i look at the configurations, so I used vanilla javascript to create a table for the data.
